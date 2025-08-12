@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All About Programming</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(52, 152, 219, 0.7), rgba(231, 76, 60, 0.7));
+            z-index: 0;
+        }
+        
+        header h1 {
+            position: relative;
+            z-index: 1;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        nav {
+            background-color: var(--dark-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 1rem 0;
+        }
+        
+        nav li {
+            margin: 0 1rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+        
+        nav a:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        section {
+            margin-bottom: 3rem;
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        h2 {
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        .language-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .language-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .language-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            height: 250px;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .chart-container {
+            height: 300px;
+            margin: 2rem 0;
+        }
+        
+        .language-popularity {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 2rem;
+        }
+        
+        .language-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .language-name {
+            width: 100px;
+            font-weight: bold;
+        }
+        
+        .bar-container {
+            flex-grow: 1;
+            background-color: #ecf0f1;
+            height: 25px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .bar {
+            height: 100%;
+            background-color: var(--primary-color);
+            transition: width 1s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            color: white;
+            font-weight: bold;
+        }
+        
+        button.scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+        }
+        
+        button.scroll-top:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav li {
+                margin: 0.5rem 0;
+            }
+            
+            .language-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .language-name {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>All About Programming</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#intro">Introduction</a></li>
+            <li><a href="#languages">Key Languages</a></li>
+            <li><a href="#emerging">Emerging Languages</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <section id="intro">
+            <h2>Introduction to Programming</h2>
+            <p>Programming, also known as coding, involves creating sequences of instructions—called programs—that computers execute to perform specific tasks. This process includes designing and implementing algorithms by writing code in various programming languages. Proficient programming requires expertise in areas such as the application domain, programming languages, code libraries, specialized algorithms, and formal logic.</p>
+            
+            <div class="chart-container">
+                <div class="language-popularity">
+                    <h3>Programming Language Popularity in 2025</h3>
+                    <div class="language-bar">
+                        <span class="language-name">Python</span>
+                        <div class="bar-container">
+                            <div class="bar" style="width: 0%;" data-width="95%">95%</div>
+                        </div>
+                    </div>
+                    <div class="language-bar">
+                        <span class="language-name">JavaScript</span>
+                        <div class="bar-container">
+                            <div class="bar" style="width: 0%;" data-width="90%">90%</div>
+                        </div>
+                    </div>
+                    <div class="language-bar">
+                        <span class="language-name">Rust</span>
+                        <div class="bar-container">
+                            <div class="bar" style="width: 0%;" data-width="75%">75%</div>
+                        </div>
+                    </div>
+                    <div class="language-bar">
+                        <span class="language-name">Go</span>
+                        <div class="bar-container">
+                            <div class="bar" style="width: 0%;" data-width="70%">70%</div>
+                        </div>
+                    </div>
+                    <div class="language-bar">
+                        <span class="language-name">Kotlin</span>
+                        <div class="bar-container">
+                            <div class="bar" style="width: 0%;" data-width="65%">65%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="languages">
+            <h2>Key Programming Languages in 2025</h2>
+            
+            <div class="language-card">
+                <h3>Python</h3>
+                <p>Renowned for its simplicity and versatility, Python is widely used in web development, data analysis, artificial intelligence (AI), machine learning (ML), and automation. Its extensive libraries, such as TensorFlow and PyTorch, have solidified its position as a top choice for developers.</p>
+            </div>
+            
+            <div class="language-card">
+                <h3>JavaScript</h3>
+                <p>Essential for web development, JavaScript enables dynamic and interactive web content. With frameworks like React, Angular, and Vue.js, it facilitates efficient front-end development. Additionally, Node.js extends its capabilities to server-side programming, making it integral for full-stack development.</p>
+            </div>
+            
+            <div class="language-card">
+                <h3>Rust</h3>
+                <p>Gaining popularity for its emphasis on memory safety and performance, Rust is increasingly used in systems programming, game development, and applications requiring high reliability. Its ownership model prevents common programming errors, making it a preferred choice for secure and efficient software development.</p>
+            </div>
+            
+            <div class="language-card">
+                <h3>Go (Golang)</h3>
+                <p>Developed by Google, Go is known for its simplicity and efficiency, particularly in cloud computing and distributed systems. Its concurrency features and performance make it suitable for scalable applications, including cloud services and microservices architectures.</p>
+            </div>
+            
+            <div class="language-card">
+                <h3>Kotlin</h3>
+                <p>As a modern alternative to Java, Kotlin has become the preferred language for Android app development. Its concise syntax and interoperability with Java allow for seamless integration into existing projects, enhancing productivity and code safety.</p>
+            </div>
+            
+            <div class="language-card">
+                <h3>Swift</h3>
+                <p>Developed by Apple, Swift is the primary language for iOS and macOS application development. It offers a modern syntax and safety features, making it accessible for beginners while providing the power needed for complex applications.</p>
+            </div>
+            
+            <div class="language-card">
+                <h3>C++</h3>
+                <p>Known for its performance and control over system resources, C++ remains vital in areas like game development, high-frequency trading, and operating system development. Its low-level capabilities make it indispensable for performance-critical applications.</p>
+            </div>
+            
+            <div class="language-card">
+                <h3>C#</h3>
+                <p>As Microsoft's flagship language, C# is extensively used in game development (notably with the Unity engine), Windows applications, and web development through the .NET framework. Its object-oriented features and integration with Microsoft's ecosystem make it a versatile choice.</p>
+            </div>
+            
+            <div class="language-card">
+                <h3>PHP</h3>
+                <p>Despite debates about its design, PHP continues to be widely used for server-side web development, powering a significant portion of websites. Its open-source nature and extensive community support contribute to its enduring presence.</p>
+            </div>
+            
+            <div class="language-card">
+                <h3>SQL</h3>
+                <p>As the standard language for database management, SQL is crucial for accessing, storing, and manipulating data. Its role in data-driven applications ensures its continued relevance in the tech industry.</p>
+            </div>
+        </section>
+        
+        <section id="emerging">
+            <h2>Emerging Languages</h2>
+            
+            <div class="language-card">
+                <h3>MoonBit</h3>
+                <p>A WebAssembly-native language designed to optimize performance and safety, MoonBit targets applications in cloud computing, edge computing, and front-end development.</p>
+            </div>
+            
+            <div class="language-card">
+                <h3>Mojo</h3>
+                <p>Combining the usability of Python with the performance of system programming languages like C++ and Rust, Mojo is tailored for artificial intelligence applications, aiming to provide a high-level programming experience without sacrificing performance.</p>
+            </div>
+        </section>
+        
+        <section id="gallery">
+            <h2>Image Gallery</h2>
+            
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="Programming code">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.guim.co.uk/img/media/d059b58efe8ce50d15639f76448becdeec69bc9b/0_184_7200_4320/master/7200.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=8a521e0177e2a9aa0e9a1cdde2d5d6cc" alt="Programmer working">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://thescalers.com/wp-content/uploads/2023/03/top-programming-languages-for%E2%80%93your-business-in-2025.jpg" alt="Programming languages">
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <button class="scroll-top" id="scrollTop">↑</button>
+    
+    <footer>
+        <p>&copy; 2025 All About Programming</p>
+    </footer>
+    
+    <script>
+        // Animate bars on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                document.querySelectorAll('.bar').forEach(bar => {
+                    bar.style.width = bar.getAttribute('data-width');
+                });
+            }, 500);
+            
+            // Scroll to top button
+            const scrollTopButton = document.getElementById('scrollTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    scrollTopButton.style.display = 'block';
+                } else {
+                    scrollTopButton.style.display = 'none';
+                }
+            });
+            
+            scrollTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
